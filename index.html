@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carvalho Veículos</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #f5f5f5;
+        }
+        
+        header {
+            background-color: #222;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+        }
+        
+        .logo span.black {
+            color: #fff;
+        }
+        
+        .logo span.red {
+            color: #e60000;
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .menu {
+            display: flex;
+            list-style: none;
+        }
+        
+        .menu li {
+            margin-left: 20px;
+        }
+        
+        .menu a {
+            text-decoration: none;
+            color: white;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        .menu a:hover {
+            color: #e60000;
+        }
+        
+        .banner {
+            background-image: url('https://www.wsupercars.com/wallpapers-regular/Volkswagen/2025-Volkswagen-Golf-GTI-Clubsport-001-2100.jpg');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .banner::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        
+        .banner-content {
+            position: relative;
+            z-index: 1;
+            text-align: center;
+            color: white;
+        }
+        
+        .banner-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+        }
+        
+        .banner-content p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: #e60000;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+        
+        .btn:hover {
+            background-color: #cc0000;
+        }
+        
+        .cars-section {
+            padding: 50px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+            font-size: 32px;
+            color: #000;
+        }
+        
+        .cars-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+        
+        .car-card {
+            background-color: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .car-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .car-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+        
+        .car-info {
+            padding: 20px;
+        }
+        
+        .car-name {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #000;
+        }
+        
+        .car-price {
+            font-size: 24px;
+            font-weight: bold;
+            color: #e60000;
+            margin-bottom: 10px;
+        }
+        
+        .car-original-price {
+            text-decoration: line-through;
+            color: #999;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .car-discount {
+            background-color: #e60000;
+            color: white;
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        
+        .car-details {
+            display: flex;
+            justify-content: space-between;
+            color: #666;
+            margin-bottom: 15px;
+        }
+        
+        .car-btn {
+            display: block;
+            text-align: center;
+            background-color: #000;
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+        
+        .car-btn:hover {
+            background-color: #e60000;
+        }
+        
+        footer {
+            background-color: #222;
+            color: white;
+            padding: 40px 0;
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+        
+        .footer-column h3 {
+            color: #e60000;
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-column p, .footer-column a {
+            color: #ccc;
+            margin-bottom: 10px;
+            display: block;
+            text-decoration: none;
+        }
+        
+        .footer-column a:hover {
+            color: #e60000;
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #444;
+            color: #888;
+        }
+        
+        @media (max-width: 768px) {
+            .menu {
+                display: none;
+            }
+            
+            .banner-content h1 {
+                font-size: 36px;
+            }
+            
+            .cars-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <span class="black">CARVALHO</span> <span class="red">VEÍCULOS</span>
+                </div>
+                <ul class="menu">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#cars">Veículos</a></li>
+                    <li><a href="#about">Sobre</a></li>
+                    <li><a href="#contact">Contato</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="banner" id="home">
+        <div class="banner-content">
+            <h1>Os melhores veículos com os melhores preços</h1>
+            <p>Encontre o veículo dos seus sonhos na Carvalho Veículos</p>
+            <a href="https://api.whatsapp.com/send?phone=5582999950016" class="btn">Ver Veículos</a>
+        </div>
+    </section>
+    
+    <section class="cars-section" id="cars">
+        <div class="container">
+            <h2 class="section-title">Nossos Veículos</h2>
+            <div class="cars-grid" id="carsGrid">
+                <!-- Carros serão adicionados por JavaScript -->
+            </div>
+        </div>
+    </section>
+    
+    <section class="about-section" id="about">
+        <div class="container">
+            <h2 class="section-title">Sobre Nós</h2>
+            <p style="text-align: center; margin-bottom: 30px;">
+                A Carvalho Veículos trabalha no ramo de veículos seminovos e usados, 
+                oferecemos os melhores carros com os preços mais competitivos e condições imperdíveis.
+            </p>
+        </div>
+    </section>
+    
+    <footer id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Carvalho Veículos</h3>
+                    <p>Rua são pedro, 572</p>
+                    <p>Centro - Olho d'água das flores/AL</p>
+                    <p>CEP: 01234-567</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Contato</h3>
+                    <p>Telefone: (82) 9995-0016</p>
+                    
+                    <p>Email: carvalhoveiculos@gmail.com</p>
+                </div>
+                <div class="footer-column">
+                    <h3>Horário de Funcionamento</h3>
+                    <p>Segunda a Sexta: 8h às 18h</p>
+                    <p>Sábado: 9h às 12h</p>
+                    <p>Domingo: Fechado</p>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 Carvalho Veículos. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+	
+	<!--
+	
+	 {
+                id: 1,
+                name: "CB Twistter",
+                year: 2016,
+                km: 25000,
+                originalPrice: 18000,
+                discount: 10,
+                image: '/api/placeholder/400/300'
+            },
+	
+	{
+                id: 5,
+                name: "Honda Fan 150",
+                year: 2014,
+                km: 25000,
+                originalPrice: 13000,
+                discount: 10,
+                image: '/api/placeholder/400/300'
+            },
+         
+	
+	
+	-->
+
+    <script>
+        // Dados dos carros (simulando uma API)
+        const cars = [
+           
+            {
+                id: 2,
+                name: "Fox Highline 2015",
+                year: 2015,
+                km: 100000,
+                originalPrice: 47990,
+                discount: 5,
+                image: 'FOX.jpg'
+            },
+            {
+                id: 3,
+                name: "Ford KÁ Class",
+                year: 2013,
+                km: 25000,
+                originalPrice: 24990,
+                discount: 10,
+                image: 'FORKA.jpg'
+            },
+            {
+                id: 4,
+                name: "Honda Biz 110",
+                year: 2018,
+                km: 20000,
+                originalPrice: 12000,
+                discount: 10,
+                image: 'biz.JPG'
+            },
+            
+        ];
+
+        // Função para calcular o preço com desconto
+        function calculateDiscountedPrice(price, discount) {
+            return price - (price * discount / 100);
+        }
+
+        // Função para formatar o preço em reais
+        function formatPrice(price) {
+            return price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+        }
+
+        // Função para renderizar os carros
+        function renderCars() {
+            const carsGrid = document.getElementById('carsGrid');
+            
+            cars.forEach(car => {
+                const discountedPrice = calculateDiscountedPrice(car.originalPrice, car.discount);
+                
+                const carCard = document.createElement('div');
+                carCard.className = 'car-card';
+                
+                carCard.innerHTML = `
+                    <div class="car-image" style="background-image: url('${car.image}')"></div>
+                    <div class="car-info">
+                        <h3 class="car-name">${car.name}</h3>
+                        <div class="car-discount">-${car.discount}% OFF</div>
+                        <div class="car-original-price">${formatPrice(car.originalPrice)}</div>
+                        <div class="car-price">${formatPrice(discountedPrice)}</div>
+                        <div class="car-details">
+                            <span>${car.year}</span>
+                            <span>${car.km} km</span>
+                        </div>
+                        <a href="https://www.instagram.com/carvalhoveiculosofc/" class="car-btn">Ver Detalhes</a>
+                    </div>
+                `;
+                
+                carsGrid.appendChild(carCard);
+            });
+        }
+
+        // Quando o documento estiver pronto, renderize os carros
+        document.addEventListener('DOMContentLoaded', renderCars);
+    </script>
+</body>
+</html>
